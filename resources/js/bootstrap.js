@@ -32,7 +32,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 // });
 
 /* Import Bootstrap */
-import 'bootstrap/scss/bootstrap';
+import 'bootstrap/scss/bootstrap.scss';
 import * as bootstrap from 'bootstrap';
 
 window.bootstrap = bootstrap;
