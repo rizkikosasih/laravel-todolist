@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-  return view('content.login');
+Route::get('/', [HomeController::class, 'home']);
+
+Route::controller(UserController::class)->group(function () {
+  Route::get('/login', 'login')->name('user-login');
+  Route::post('/_login', '_login');
 });
