@@ -18,8 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
   fv.addEventListener('submit', e => {
     const _this = e.currentTarget;
     const {
-      action: { value: action },
-      method: { value: method }
+      action: { value: action }
     } = _this.attributes;
     e.preventDefault();
     e.stopPropagation();
@@ -32,11 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const formData = new FormData(_this);
 
       /* Request AXIS */
-      axios({
-        method: method,
-        url: siteUrl(action),
-        data: formData
-      })
+      axios
+        .post(siteUrl(action), formData)
         .then(response => {
           btnSubmit.value = 'Submit';
           const { data, status } = response;
