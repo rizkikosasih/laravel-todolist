@@ -10,8 +10,8 @@ class UserControllerTest extends TestCase
 {
   public function testLoginSuccess()
   {
-    $this->post('/login', ['user' => 'rizki', 'password' => '123'])
-      ->assertRedirect('/')
+    $this->post('/_login', ['user' => 'rizki', 'password' => '123'])
+      ->assertRedirectToRoute('todolist')
       ->assertSessionHas('user', 'rizki');
   }
 }

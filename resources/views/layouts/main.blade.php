@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html lang="{{ config('app.locale') }}" data-url="{{ url('/') }}">
+<html
+  lang="{{ config('app.locale') }}"
+  data-url="{{ url('/') }}"
+  data-bs-theme="{{ isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'light' }}"
+>
 
 <head>
   <meta charset="UTF-8">

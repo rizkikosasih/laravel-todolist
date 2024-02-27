@@ -10,7 +10,7 @@ class UserServiceImpl implements UserService
     'rizki' => '123',
   ];
 
-  public function login(string $user, string $password): bool
+  public function login(string $user, string|int $password): bool
   {
     if (!isset($this->users[$user])) {
       return false;

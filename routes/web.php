@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TodoController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,9 +16,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'home']);
+Route::get('/', [HomeController::class, 'home'])->name('home');
+Route::get('login', [UserController::class, 'login'])->name('user-login');
+Route::post('_login', [UserController::class, '_login']);
+Route::post('logout', [UserController::class, 'logout'])->name('user-logout');
 
-Route::controller(UserController::class)->group(function () {
-  Route::get('/login', 'login')->name('user-login');
-  Route::post('/_login', '_login');
-});
+Route::prefix('todolist')
+  ->controller(TodoController::class)
+  ->group(function () {
+    Route::get('/', 'index')->name('todolist');
+
+    Route::post('/delete', 'delete')->name('todolist-delete');
+    Route::post('/save', 'save')->name('todolist-save');
+  });

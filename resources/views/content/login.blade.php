@@ -4,10 +4,22 @@
   <div class="w-100 d-flex align-items-center justify-content-center" style="height: 100vh;">
     <div class="card" style="width: 360px;">
       <div class="card-header text-primary-emphasis bg-primary-subtle">
-        <h4 class="card-title">Login Form</h4>
+        <h4 class="card-title">Form Login</h4>
       </div>
       <div class="card-body">
-        <div class="alert alert-danger d-none" id="message-error" role="alert"></div>
+        @if(session('error'))
+          <div class="alert alert-danger alert-dismissible fade show text-capitalize" role="alert">
+            <span>{{ session('error') }}</span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        @endif
+
+        @if(session('message'))
+          <div class="alert alert-info alert-dismissible fade show text-capitalize" role="alert">
+            <span>{{ session('message') }}</span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        @endif
         <form action="_login" method="post" class="form-validate" novalidate>
           @csrf
           <div class="mb-3">
@@ -20,7 +32,7 @@
           </div>
           <div class="mb-3">
             <div class="d-grid">
-              <input type="submit" value="Submit" name="submit" id="submit-form" class="btn btn-outline-primary" />
+              <button type="submit" name="submit" id="submit-form" class="btn btn-primary bg-gradient">Submit</button>
             </div>
           </div>
         </form>

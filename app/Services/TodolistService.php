@@ -8,5 +8,5 @@ interface TodolistService
 
   public function getTodo(): array;
 
-  public function removeTodo(string|int $id): void;
+  public function deleteTodo(string|int $id): void;
 }

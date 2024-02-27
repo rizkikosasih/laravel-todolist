@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Services\UserService;
-use Illuminate\Support\Str;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -25,31 +24,22 @@ class UserController extends Controller
     ]);
   }
 
-  public function _login(Request $request): JsonResponse|Response
+  public function _login(Request $request): RedirectResponse
   {
     $user = strval($request->input('user'));
     $password = strval($request->input('password'));
-    $code = 200;
-    $message = null;
-    $error = null;
 
-    if ($this->userService->login($user, $password)) {
-      $request->session()->put('user', $user);
-      $message = 'Login Success';
-    } else {
-      $code = 405;
-      $error = 'User or Password wrong';
+    if (!$this->userService->login($user, $password)) {
+      return redirect()->route('user-login')->with('error', 'User or Password wrong');
     }
 
-    return response()->json([
-      'code' => $code,
-      'message' => $message,
-      'error' => $error,
-    ]);
+    $request->session()->put('user', $user);
+    return redirect()->route('todolist');
   }
 
-  public function _logout()
+  public function logout(Request $request): RedirectResponse
   {
-    //
+    $request->session()->flush();
+    return redirect()->route('user-login')->with('message', 'anda telah logout');
   }
 }
