@@ -10,14 +10,14 @@
       <h1 class="text-capitalize">Hello {{ session()->get('user') }}</h1>
     </div>
     <div class="col-auto">
-      <div class="d-flex gap-3">
-        <button type="button" class="btn btn-light bg-gradient" id="btn-theme">
+      <div class="d-flex align-items-center gap-3">
+        <button type="button" class="btn btn-outline-{{ $_COOKIE['theme'] === 'dark' ? 'light' : 'dark' }} bg-gradient btn-sm tooltips" title="Switch Theme" id="btn-theme">
           <i class="ti ti-{{ $iconTheme }}"></i>
         </button>
 
         <form action="{{ route('user-logout') }}" method="post" class="form-validate" novalidate>
           @csrf
-          <button type="submit" class="btn btn-danger bg-gradient">Logout</button>
+          <button type="submit" class="btn btn-danger bg-gradient btn-sm">Logout</button>
         </form>
       </div>
     </div>

@@ -1,7 +1,12 @@
+/** Import Stylesheet */
+import './../vendor/font/tabler-icons.scss';
+import './../scss/app.scss';
+
+/** Import Vendor JS */
 import './../vendor/libs/bootstrap';
 import './../vendor/libs/sweetalert2';
-import './../vendor/font/tabler-icons.scss';
-import './../css/app.css';
+
+/** Import Requirement */
 import { html } from './constant/constants';
 import { getPreferredTheme, setStoredTheme } from './constant/theme';
 
@@ -13,11 +18,28 @@ document.addEventListener('DOMContentLoaded', () => {
     setStoredTheme(getPreferredTheme());
   }
 
-  const btnTheme = document.querySelector('#btn-theme');
-  btnTheme.addEventListener('click', (e) => {
-    e.preventDefault();
-    setStoredTheme(html.dataset.bsTheme === 'dark' ? 'light' : 'dark');
+  /* To initialize tooltip */
+  new bootstrap.Tooltip(document.documentElement, {
+    animation: true,
+    html: true,
+    selector: '.tooltips, [data-popup=tooltip-custom]',
+    placement: (context) => {
+      const placement = context._element.dataset.placement;
+      if (placement) {
+        return placement;
+      } else {
+        return 'auto';
+      }
+    },
   });
+
+  const btnTheme = document.querySelector('#btn-theme');
+  if (btnTheme) {
+    btnTheme.addEventListener('click', (e) => {
+      e.preventDefault();
+      setStoredTheme(html.dataset.bsTheme === 'dark' ? 'light' : 'dark');
+    });
+  }
 
   const fvList = document.querySelectorAll('.form-validate');
   Array.from(fvList).forEach((fv) => {
