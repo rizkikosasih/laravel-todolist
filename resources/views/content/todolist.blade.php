@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @php
-  $iconTheme = $_COOKIE['theme'] === 'dark' ? 'sun' : 'moon';
+  $iconTheme = $_COOKIE['theme'] === 'dark' ? 'moon' : 'sun';
 @endphp
 
 @section('content')
