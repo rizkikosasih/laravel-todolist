@@ -1,19 +1,10 @@
 {
-  "arrowParens": "avoid",
-  "bracketSpacing": true,
-  "htmlWhitespaceSensitivity": "css",
-  "insertPragma": false,
-  "jsxSingleQuote": true,
-  "printWidth": 90,
-  "proseWrap": "preserve",
-  "quoteProps": "as-needed",
-  "requirePragma": false,
   "semi": true,
-  "singleQuote": true,
   "tabWidth": 2,
-  "trailingComma": "none",
+  "printWidth": 90,
+  "singleQuote": true,
+  "trailingComma": "all",
+  "bracketSameLine": true,
   "useTabs": false,
-  "plugins": [
-    "@prettier/plugin-php"
-  ]
+  "plugins": ["@prettier/plugin-php"]
 }

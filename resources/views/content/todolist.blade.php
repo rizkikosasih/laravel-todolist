@@ -1,15 +1,25 @@
 @extends('layouts.main')
 
+@php
+  $iconTheme = $_COOKIE['theme'] === 'dark' ? 'sun' : 'moon';
+@endphp
+
 @section('content')
   <div class="row align-items-center justify-content-between py-3">
     <div class="col-auto">
       <h1 class="text-capitalize">Hello {{ session()->get('user') }}</h1>
     </div>
     <div class="col-auto">
-      <form action="{{ route('user-logout') }}" method="post" class="form-validate" novalidate>
-        @csrf
-        <button type="submit" class="btn btn-danger bg-gradient">Logout</button>
-      </form>
+      <div class="d-flex gap-3">
+        <button type="button" class="btn btn-light bg-gradient" id="btn-theme">
+          <i class="ti ti-{{ $iconTheme }}"></i>
+        </button>
+
+        <form action="{{ route('user-logout') }}" method="post" class="form-validate" novalidate>
+          @csrf
+          <button type="submit" class="btn btn-danger bg-gradient">Logout</button>
+        </form>
+      </div>
     </div>
   </div>
 
